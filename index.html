@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VishTech | Voyage into AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Inter,sans-serif;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
+canvas{position:fixed;inset:0;z-index:-1}
+
+.orbitron{font-family:Orbitron}
+.section{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:6vh 6vw;
+}
+.glass{
+  background:rgba(5,20,35,.85);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(0,242,255,.25);
+  border-radius:22px;
+  padding:2.6rem;
+  max-width:760px;
+  width:100%;
+  box-shadow:0 0 45px rgba(0,242,255,.18);
+  opacity:0;
+  transform:translateY(60px);
+}
+
+h1,h2{color:#00f2ff}
+h2{margin-bottom:1rem}
+
+/* HEADER */
+header{
+  position:fixed;
+  top:18px;
+  left:22px;
+  z-index:10;
+  font-size:1.2rem;
+}
+header span{
+  color:#00f2ff;
+  text-shadow:0 0 12px #00f2ff;
+}
+
+/* HERO */
+.hero{text-align:center}
+.hero h1{
+  font-size:3.2rem;
+  text-shadow:0 0 20px #00f2ff;
+}
+.hero p{
+  margin-top:14px;
+  font-size:.85rem;
+  letter-spacing:4px;
+  color:#9aa;
+}
+
+/* BADGES */
+.badge{
+  display:inline-block;
+  margin:6px;
+  padding:10px 20px;
+  border-radius:999px;
+  border:1px solid #00f2ff;
+  font-size:.85rem;
+  transition:.35s;
+}
+.badge:hover{
+  background:#00f2ff;
+  color:#000;
+  box-shadow:0 0 20px #00f2ff;
+  transform:scale(1.08);
+}
+
+/* PROJECT BUTTONS */
+.project-btn{
+  display:block;
+  padding:18px 22px;
+  margin-bottom:14px;
+  border-radius:16px;
+  border:1px solid rgba(0,242,255,.45);
+  text-decoration:none;
+  color:#00f2ff;
+  font-weight:600;
+  transition:.35s ease;
+  position:relative;
+}
+.project-btn span{
+  display:block;
+  font-size:.75rem;
+  color:#aaa;
+  margin-top:4px;
+}
+.project-btn::after{
+  content:"↗";
+  position:absolute;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+}
+.project-btn:hover{
+  background:#00f2ff;
+  color:#000;
+  box-shadow:0 0 28px #00f2ff;
+}
+.project-btn:hover span{color:#111}
+
+/* CONNECT */
+.connect-item{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px;
+  border-radius:14px;
+  border:1px solid rgba(0,242,255,.35);
+  margin-bottom:12px;
+  text-decoration:none;
+  color:#00f2ff;
+  transition:.3s;
+}
+.connect-item i{font-size:1.4rem}
+.connect-item span{
+  font-size:.8rem;
+  color:#aaa;
+}
+.connect-item:hover{
+  background:#00f2ff;
+  color:#000;
+  box-shadow:0 0 22px #00f2ff;
+}
+.connect-item:hover span{color:#111}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+}
+.footer-icons{
+  margin-top:12px;
+  display:flex;
+  justify-content:center;
+  gap:22px;
+}
+.footer-icons a{
+  color:#00f2ff;
+  font-size:1.4rem;
+  transition:.3s;
+}
+.footer-icons a:hover{
+  text-shadow:0 0 18px #00f2ff;
+  transform:scale(1.2);
+}
+
+@media(max-width:600px){
+  .hero h1{font-size:2.2rem}
+}
+</style>
+</head>
+
+<body>
+
+<header class="orbitron">⚡ <span>VishTech</span></header>
+<canvas id="bg"></canvas>
+
+<!-- HERO -->
+<section class="section hero">
+  <div>
+    <h1 class="orbitron">Voyage into AI</h1>
+    <p>SCROLL DOWN TO EXPLORE</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section">
+  <div class="glass">
+    <h2 class="orbitron">About</h2>
+    <p>
+      Aman Singh — B.Tech CSE (AI) student focused on building creative,
+      futuristic web experiences and learning AI through real-world projects.
+    </p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section">
+  <div class="glass">
+    <h2 class="orbitron">Skills</h2>
+    <span class="badge">Python</span>
+    <span class="badge">HTML</span>
+    <span class="badge">CSS</span>
+    <span class="badge">JavaScript</span>
+    <span class="badge">Node.js</span>
+    <span class="badge">GitHub</span>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section">
+  <div class="glass">
+    <h2 class="orbitron">Featured Projects</h2>
+
+    <a class="project-btn" href="https://aman-singh-ai.github.io/new-year-2026/" target="_blank">
+      🚀 Happy New Year 2026
+      <span>Interactive Website</span>
+    </a>
+
+    <a class="project-btn" href="https://app-8hw1k84ua3up.appmedo.com" target="_blank">
+      🌐 Personal Portfolio
+      <span>Live Website</span>
+    </a>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section class="section">
+  <div class="glass">
+    <h2 class="orbitron">Connect With Me</h2>
+
+    <a class="connect-item" href="https://github.com/aman-singh-ai" target="_blank">
+      <i class="fa-brands fa-github"></i>
+      <div>
+        GitHub
+        <span>@aman-singh-ai</span>
+      </div>
+    </a>
+
+    <a class="connect-item" href="https://www.instagram.com/vishtechh" target="_blank">
+      <i class="fa-brands fa-instagram"></i>
+      <div>
+        Instagram
+        <span>@vishtechh</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section class="section">
+  <div class="glass footer">
+    <p style="font-style:italic">
+      “Consistency beats talent when talent doesn’t stay consistent.”
+    </p>
+
+    <p style="margin-top:10px">
+      Created by <span style="color:#00f2ff">VishTech</span>
+    </p>
+
+    <div class="footer-icons">
+      <a href="https://github.com/aman-singh-ai" target="_blank">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://www.instagram.com/vishtechh" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,4000);
+camera.position.z=120;
+
+const renderer=new THREE.WebGLRenderer({canvas:bg,antialias:true});
+renderer.setSize(innerWidth,innerHeight);
+renderer.setPixelRatio(devicePixelRatio);
+
+/* STARS */
+const starGeo=new THREE.BufferGeometry();
+const starCount=15000;
+const starPos=new Float32Array(starCount*3);
+for(let i=0;i<starCount*3;i+=3){
+  starPos[i]=(Math.random()-.5)*2000;
+  starPos[i+1]=(Math.random()-.5)*2000;
+  starPos[i+2]=-Math.random()*4000;
+}
+starGeo.setAttribute("position",new THREE.BufferAttribute(starPos,3));
+const stars=new THREE.Points(
+  starGeo,
+  new THREE.PointsMaterial({color:0xffffff,size:0.6})
+);
+scene.add(stars);
+
+/* SPHERES */
+const colors=[0x00f2ff,0xff00ff,0x00ff88,0xff8800];
+const spheres=[];
+for(let i=0;i<4;i++){
+  const s=new THREE.Mesh(
+    new THREE.IcosahedronGeometry(20+i*5,2),
+    new THREE.MeshStandardMaterial({
+      color:colors[i],
+      wireframe:true,
+      emissive:colors[i],
+      emissiveIntensity:.35
+    })
+  );
+  s.position.set(i%2?80:-80,0,-200-(i*280));
+  scene.add(s);spheres.push(s);
+}
+
+scene.add(new THREE.PointLight(0xffffff,2).position.set(60,60,60));
+scene.add(new THREE.AmbientLight(0x333333));
+
+gsap.registerPlugin(ScrollTrigger);
+gsap.to(camera.position,{
+  z:-1200,
+  scrollTrigger:{trigger:"body",start:"top top",end:"bottom bottom",scrub:1.5}
+});
+gsap.utils.toArray(".glass").forEach(c=>{
+  gsap.to(c,{
+    opacity:1,y:0,
+    scrollTrigger:{trigger:c,start:"top 80%",scrub:true}
+  });
+});
+
+function animate(){
+  requestAnimationFrame(animate);
+  stars.geometry.attributes.position.array.forEach((v,i)=>{
+    if(i%3===2){
+      stars.geometry.attributes.position.array[i]+=9;
+      if(stars.geometry.attributes.position.array[i]>0)
+        stars.geometry.attributes.position.array[i]=-4000;
+    }
+  });
+  stars.geometry.attributes.position.needsUpdate=true;
+
+  spheres.forEach((s,i)=>{
+    s.rotation.y+=0.004;
+    s.position.x=Math.sin(performance.now()*0.001+i)*70;
+  });
+
+  renderer.render(scene,camera);
+}
+animate();
+
+addEventListener("resize",()=>{
+  camera.aspect=innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight);
+});
+</script>
+
+</body>
+</html>
